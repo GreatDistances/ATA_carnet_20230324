@@ -2,16 +2,17 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Add Item</title>
+    <title>Add Item To Inventory</title>
 </head>
 <body>
 
 <h1 th:text="${title}"> </h1>
 
-<h3>IMPORTANT: Be sure to separately list any batteries and fragile items!</h3>
+<h3>IMPORTANT: Be sure to list any batteries and fragile items individually!</h3>
+<h3>If like items always travel together, list as a group - if not, please submit to inventory separately.</h3>
 
 <div>
-    <form action="" method="post">
+    <form action="/inventory/add" method="post">
         <div class="form-group">
             <label for="name">Item Name:</label>
             <input type="text" name="name" id="name">
@@ -40,6 +41,10 @@
         <div class="form-group">
             <label for="country">Country of Origin:</label>
             <input type="text" name="country" id="country">
+        </div>
+        <div class="form-group">
+            <label for="owner">Item Owned By or Rented From:</label>
+            <input type="text" name="owner" id="owner">
         </div>
         <div class="form-group">
             <label for="tag">Tags:</label>

@@ -1,14 +1,29 @@
-package model;
+package com.greatdistances.self20230324.model;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Trip extends AbstractEntity {
 
+    //JOBNO FIELD IS OPTIONAL
     private String jobNo;
+
+    @NotNull(message="Required field.")
+    @Size(min=2, max=56, message="Character count must be between 2 and 60.")
     private String country;
+
+    @NotNull(message="Required field.")
+    @Future(message="Equipment import date must be in the future.")
     private String importDate;
+
+    @NotNull(message="Required field.")
+    @Future(message="Equipment export date must be in the future.")
     private String exportDate;
+
+    // TRANSIT FIELD IS OPTIONAL
     private String transit;
 
     public Trip(String jobNo, String country, String importDate, String exportDate, String transit) {

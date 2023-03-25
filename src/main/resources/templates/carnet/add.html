@@ -2,20 +2,21 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Add New Trip</title>
+    <title>Title</title>
 </head>
 <body>
 
 <h1 th:text="${title}"> </h1>
 
 <div>
-    <form action="" method="post">
+    <form action="/carnet/add" method="post">
         <div class="form-group">
-            <label for="name">Trip Name:</label>
-            <input type="text" name="name" id="name">
+            <label for="trip">Trip:</label>
+            <select name="trip" id="trip"> <!-- best case:  reference by Trip Name and Job Number -->
+            </select>
         </div>
         <div class="form-group">
-            <label for="jobNumber">Job Number (Optional):</label>
+            <label for="jobNumber">Job Number (Optional)</label>
             <input type="text" name="jobNumber" id="jobNumber">
         </div>
         <div class="form-group">
@@ -31,7 +32,7 @@
             <input type="date" name="exportDate" id="exportDate">
         </div>
         <div class="form-group">
-            <label for="transit">Transit/Connection Countries (Optional):</label>
+            <label for="transit">Transit/Connection Countries:</label>
             <input type="text" name="transit" id="transit">
         </div>
         <div class="form-group">

@@ -2,11 +2,17 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Delete Item</title>
+    <title>Inventory Index</title>
 </head>
 <body>
 
 <h1 th:text="${title}"> </h1>
+
+<ul>
+    <th:block th each="item : ${items}">
+        <li th:text="${item}"></li>
+    </th:block>
+</ul>
 
 </body>
 </html>

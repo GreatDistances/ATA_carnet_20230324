@@ -1,6 +1,6 @@
-package model.data;
+package com.greatdistances.self20230324.model.data;
 
-import model.Category;
+import com.greatdistances.self20230324.model.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
