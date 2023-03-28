@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("inventory")
@@ -63,6 +64,17 @@ public class InventoryController {
         model.addAttribute("title", "Delete Item(s)");
         model.addAttribute("items", itemRepository.findAll());
         return "inventory/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteItemForm(@RequestParam int[] itemIds) {
+        for (int id : itemIds) {
+            Optional<Item> optItem = itemRepository.findById(id);
+            if (optItem.isPresent()) {
+                itemRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
     }
 
 }
