@@ -6,45 +6,46 @@
 </head>
 <body>
 
-<h1 th:text="${title}"> </h1>
+<nav th:replace="fragments :: page-header"></nav>
 
 <h3>IMPORTANT: Be sure to list any batteries and fragile items individually!</h3>
 <h3>If like items always travel together, list as a group - if not, please submit to inventory separately.</h3>
+
+<p th:text="${errorMsg}"></p>
 
 <div>
     <form action="/inventory/add" method="post">
         <div class="form-group">
             <label for="name">Item Name:</label>
-            <input type="text" name="name" id="name">
+            <input type="text" th:field="${item.name}" id="name">
         </div>
         <div class="form-group">
             <label for="category">Item Category or Dept:</label>
-            <select name="category" id="category">
-            </select>
+            <select id="category" name="category"></select>
         </div>
         <div class="form-group">
             <label for="pieces">Number of Pieces:</label>
-            <input type="number" name="pieces" id="pieces">
+            <input type="number" th:field="${item.pieces}" id="pieces">
         </div>
         <div class="form-group">
             <label for="weightKgPerPiece">Weight Per Piece (KG):</label>
-            <input type="text" name="weightKgPerPiece" id="weightKgPerPiece">
+            <input type="number" th:field="${item.weightKgPerPiece}" id="weightKgPerPiece">
         </div>
         <div class="form-group">
             <label for="serialNo">Serial Numbers:</label>
-            <input type="textarea" name="serialNo" id="serialNo">
+            <input type="text" th:field="${item.serialNo}" id="serialNo">
         </div>
         <div class="form-group">
             <label for="valuePerPiece">Value Per Piece (US Dollars):</label>
-            <input type="text" name="valuePerPiece" id="valuePerPiece">
+            <input type="number" th:field="${item.valuePerPiece}" id="valuePerPiece">
         </div>
         <div class="form-group">
-            <label for="country">Country of Origin:</label>
-            <input type="text" name="country" id="country">
+            <label for="origin">Country of Origin:</label>
+            <input type="text" th:field="${item.origin}" id="origin">
         </div>
         <div class="form-group">
             <label for="owner">Item Owned By or Rented From:</label>
-            <input type="text" name="owner" id="owner">
+            <input type="text" th:field="${item.owner}" id="owner">
         </div>
         <div class="form-group">
             <label for="tag">Tags:</label>

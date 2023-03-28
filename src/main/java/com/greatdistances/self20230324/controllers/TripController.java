@@ -5,6 +5,7 @@ import com.greatdistances.self20230324.model.data.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ public class TripController {
     @GetMapping("")
     public String index(Model model) {
         model.addAttribute("title", "Trip Index");
+        model.addAttribute("trips", tripRepository.findAll());
         return "trip/index";
     }
 
@@ -33,8 +35,15 @@ public class TripController {
     }
 
     @PostMapping("add")
-    public String processAddTripForm(@Valid @ModelAttribute Trip newTrip, Model model) {
-        model.addAttribute("title", "Add Trip");
+    public String processAddTripForm(@ModelAttribute @Valid Trip newTrip, Model model, Errors errors) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Item");
+            model.addAttribute("errorMsg", "Bad data!");
+            return "inventory/add";
+        }
+
+        model.addAttribute("title", "Add Item");
         tripRepository.save(newTrip);
         //TODO @Valid
         // TODO error handling

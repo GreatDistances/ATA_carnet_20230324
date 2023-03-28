@@ -30,12 +30,15 @@ public class Trip extends AbstractEntity {
     // TRANSIT FIELD IS OPTIONAL
     private String transit;
 
-    public Trip(String jobNumber, String country, Date importDate, Date exportDate, String transit) {
+    private boolean isEquipAttached;
+
+    public Trip(String jobNumber, String country, Date importDate, Date exportDate, String transit, boolean isEquipAttached) {
         this.jobNumber = jobNumber;
         this.country = country;
         this.importDate = importDate;
         this.exportDate = exportDate;
         this.transit = transit;
+        this.isEquipAttached = false;
     }
 
     public Trip() {
@@ -79,5 +82,13 @@ public class Trip extends AbstractEntity {
 
     public void setTransit(String transit) {
         this.transit = transit;
+    }
+
+    public boolean isEquipAttached() {
+        return isEquipAttached;
+    }
+
+    public void setEquipAttached(boolean equipAttached) {
+        isEquipAttached = equipAttached;
     }
 }

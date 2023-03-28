@@ -6,10 +6,11 @@
 </head>
 <body>
 
-<h1 th:text="${title}"> </h1>
+<nav th:replace="fragments :: page-header"></nav>
 
 <table>
     <tr>
+        <th>System ID</th>
         <th>Item Name</th>
         <th>Item Category or Dept</th>
         <th>Piece Count</th>
@@ -24,6 +25,7 @@
     </tr>
     <th:block>
     <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
         <td th:text="${item.name}"></td>
         <td>ADD CATEGORY</td>
         <td th:text="${item.pieces}"></td>

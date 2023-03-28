@@ -31,7 +31,7 @@ public class Item extends AbstractEntity {
     @Size(min=2, max=56, message="Character count must be between 2 and 60.")
     private String origin;
 
-    @NotNull(message="Required field.")
+    //     @NotNull(message="Required field.")
     @Size(max=100, message="Character count must be less than 100.")
     private String serialNo;
 
@@ -73,8 +73,8 @@ public class Item extends AbstractEntity {
         return weightKgTotal;
     }
 
-    public void setWeightKgTotal(double weightKgTotal) {
-        this.weightKgTotal = weightKgTotal;
+    public void setWeightKgTotal(double weightKgPerPiece, int pieces) {
+        this.weightKgTotal = weightKgPerPiece * pieces;
     }
 
     public double getValuePerPiece() {
@@ -89,8 +89,8 @@ public class Item extends AbstractEntity {
         return valueTotal;
     }
 
-    public void setValueTotal(double valueTotal) {
-        this.valueTotal = valueTotal;
+    public void setValueTotal(double valuePerPiece, int pieces) {
+        this.valueTotal = valuePerPiece * pieces;
     }
 
     public String getOrigin() {

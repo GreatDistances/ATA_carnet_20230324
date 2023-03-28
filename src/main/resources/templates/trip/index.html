@@ -6,13 +6,32 @@
 </head>
 <body>
 
-<h1 th:text="${title}"> </h1>
+<nav th:replace="fragments :: page-header"></nav>
 
-<ul>
-    <th:block th each="trip : ${trips}">
-        <li th:text="${trip}"></li>
+<table>
+    <tr>
+        <th>System ID</th>
+        <th>Trip Name</th>
+        <th>Job No.</th>
+        <th>Destination</th>
+        <th>Import Date</th>
+        <th>Export Date</th>
+        <th>Transit Country(s)</th>
+        <th>Equip List Attached?</th>
+    </tr>
+    <th:block>
+        <tr th:each="trip : ${trips}">
+            <td th:text="${trip.id}"></td>
+            <td th:text="${trip.name}"></td>
+            <td th:text="${trip.jobNumber}"></td>
+            <td th:text="${trip.country}"></td>
+            <td th:text="${trip.importDate}"></td>
+            <td th:text="${trip.exportDate}"></td>
+            <td th:text="${trip.transit}"></td>
+            <td th:text="${trip.isEquipAttached}"></td>
     </th:block>
-</ul>
+    </tr>
+</table>
 
 
 </body>
