@@ -29,7 +29,7 @@ public class Item extends AbstractEntity {
 
     @NotNull(message="Required field.")
     @Size(min=2, max=56, message="Character count must be between 2 and 60.")
-    private String country;
+    private String origin;
 
     @NotNull(message="Required field.")
     @Size(max=100, message="Character count must be less than 100.")
@@ -42,13 +42,13 @@ public class Item extends AbstractEntity {
     public Item() {
     }
 
-    public Item(int pieces, double weightKgPerPiece, double valuePerPiece, String country, String serialNo, String owner) {
+    public Item(int pieces, double weightKgPerPiece, double valuePerPiece, String origin, String serialNo, String owner) {
         this.pieces = pieces;
         this.weightKgPerPiece = weightKgPerPiece;
         this.weightKgTotal = getWeightKgTotal();
         this.valuePerPiece = valuePerPiece;
         this.valueTotal = getValueTotal();
-        this.country = country;
+        this.origin = origin;
         this.serialNo = serialNo;
         this.owner = owner;
     }
@@ -93,12 +93,12 @@ public class Item extends AbstractEntity {
         this.valueTotal = valueTotal;
     }
 
-    public String getCountry() {
-        return country;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getSerialNo() {
