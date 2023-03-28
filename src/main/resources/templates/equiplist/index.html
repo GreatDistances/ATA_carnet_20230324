@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Equipment List Index</title>
+</head>
+<body>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<table>
+    <tr>
+        <th>System ID</th>
+        <th>List Name</th>
+        <th>Job No.</th>
+        <th># Items in List</th>
+    </tr>
+    <th:block>
+        <tr th:each="equiplist : ${equiplists}">
+            <td th:text="${equiplist.id}"></td>
+            <td th:text="${equiplist.name}"></td>
+            <td th:text="${equiplist.jobNumber}"></td>
+            <td th:text="${equiplist.itemCount}"></td>
+    </th:block>
+    </tr>
+</table>
+
+</body>
+</html>

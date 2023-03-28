@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -64,6 +65,25 @@ public class TripController {
             }
         }
         return "redirect:";
+    }
+
+    @GetMapping("edit/{tripId}")
+    public String displayEditTripForm(Model model, @PathVariable int tripId) {
+
+        Optional<Trip> optTrip = tripRepository.findById(tripId);
+        if (optTrip.isEmpty()) {
+            return "trip/index";
+        }
+
+        model.addAttribute("title", "Edit Trip, ID #" + tripId);
+        model.addAttribute("trip", optTrip.get());
+        return "trip/edit";
+    }
+
+    @PutMapping("edit")
+    public String processEditTripForm(@PathVariable(value="tripId"), int id,  {
+
+        tripRepository.save(thisTrip);
     }
 
 }

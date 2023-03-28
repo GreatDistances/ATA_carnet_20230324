@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Equipment List</title>
+</head>
+<body>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<table>
+    <tr>
+        <th>Add Item ?</th>
+        <th>System ID</th>
+        <th>Item Name</th>
+        <th>Item Category or Dept</th>
+        <th>Piece Count</th>
+        <th>Piece Weight</th>
+        <th>Total Weight</th>
+        <th>Replacement Value (per)</th>
+        <th>Total Value</th>
+        <th>Country of Origin</th>
+        <th>Serial No(s)</th>
+        <th>Owned By</th>
+        <th>Tags</th>
+    </tr>
+    <form method="post">
+        <th:block>
+            <div class="form-group">
+                <tr th:each="item : ${items}">
+                    <td><input type="checkbox" name="itemIds" th:value="${item.id}"></td> <!-- not sure if item.id will actually work as written-->
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td>ADD CATEGORY</td>
+                    <td th:text="${item.pieces}"></td>
+                    <td th:text="${item.weightKgPerPiece}"></td>
+                    <td th:text="${item.weightKgTotal}"></td>
+                    <td th:text="${item.valuePerPiece}"></td>
+                    <td th:text="${item.valueTotal}"></td>
+                    <td th:text="${item.origin}"></td>
+                    <td th:text="${item.serialNo}"></td>
+                    <td th:text="${item.owner}"></td>
+                    <td>ADD TAGS</td>
+                </tr>
+            </div>
+        </th:block>
+        <div class="form-group">
+            <button type="submit" value="submit">Submit</button> <!-- TODO figure out how to move form buttons below boxes -->
+            <button type="reset">Reset All Fields</button>
+        </div>
+    </form>
+</table>
+
+</body>
+</html>
