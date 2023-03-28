@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Delete Item From Inventory</title>
+</head>
+<body>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<table>
+    <tr>
+        <th>System ID</th>
+        <th>Trip Name</th>
+        <th>Job No.</th>
+        <th>Destination</th>
+        <th>Import Date</th>
+        <th>Export Date</th>
+        <th>Transit Country(s)</th>
+        <th>Equip List Attached?</th>
+    </tr>
+    <form method="post">
+        <th:block>
+            <div class="form-group">
+                <tr th:each="trip : ${trips}">
+                    <td><input type="checkbox" name="tripIds" th:value="${trip.id}"></td> <!-- not sure if item.id will actually work as written-->
+                    <td th:text="${trip.id}"></td>
+                    <td th:text="${trip.name}"></td>
+                    <td th:text="${trip.jobNumber}"></td>
+                    <td th:text="${trip.country}"></td>
+                    <td th:text="${trip.importDate}"></td>
+                    <td th:text="${trip.exportDate}"></td>
+                    <td th:text="${trip.transit}"></td>
+                    <td th:text="${trip.isEquipAttached}"></td>
+                </tr>
+            </div>
+        </th:block>
+        <div class="form-group">
+            <button type="submit" value="submit">Submit</button> <!-- TODO figure out how to move form buttons below boxes -->
+            <button type="reset">Reset All Fields</button>
+        </div>
+    </form>
+</table>
+
+
+</body>
+</html>

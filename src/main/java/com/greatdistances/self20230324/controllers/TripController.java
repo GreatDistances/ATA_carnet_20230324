@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("trip")
@@ -47,6 +45,24 @@ public class TripController {
         tripRepository.save(newTrip);
         //TODO @Valid
         // TODO error handling
+        return "redirect:";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteTripForm(Model model) {
+        model.addAttribute("title", "Delete Trip(s)");
+        model.addAttribute("trips", tripRepository.findAll());
+        return "trip/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteTripForm(@RequestParam int[] tripIds) {
+        for (int id : tripIds) {
+            Optional<Trip> optTrip = tripRepository.findById(id);
+            if (optTrip.isPresent()) {
+                tripRepository.deleteById(id);
+            }
+        }
         return "redirect:";
     }
 
