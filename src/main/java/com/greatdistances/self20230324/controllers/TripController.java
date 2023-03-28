@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("trip")
 public class TripController {
@@ -31,7 +33,7 @@ public class TripController {
     }
 
     @PostMapping("add")
-    public String processAddTripForm(@ModelAttribute Trip newTrip, Model model) {
+    public String processAddTripForm(@Valid @ModelAttribute Trip newTrip, Model model) {
         model.addAttribute("title", "Add Trip");
         tripRepository.save(newTrip);
         //TODO @Valid

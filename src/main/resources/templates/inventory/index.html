@@ -9,8 +9,8 @@
 <h1 th:text="${title}"> </h1>
 
 <ul>
-    <th:block th each="item : ${items}">
-        <li th:text="${item}"></li>
+    <th:block th:each="item : ${items}">
+        <li th:text="${item.name}"></li>
     </th:block>
 </ul>
 

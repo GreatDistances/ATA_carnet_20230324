@@ -8,6 +8,12 @@
 
 <h1 th:text="${title}"> </h1>
 
+<ul>
+    <th:block th each="trip : ${trips}">
+        <li th:text="${trip}"></li>
+    </th:block>
+</ul>
+
 
 </body>
 </html>
