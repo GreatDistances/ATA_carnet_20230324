@@ -2,22 +2,20 @@ package com.greatdistances.self20230324.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Trip extends AbstractEntity {
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="equiplist_trip",
-            joinColumns = {@JoinColumn(name="trip_id")},
-            inverseJoinColumns = {@JoinColumn(name="equiplist_id")})
-    private List<Equiplist> items = new ArrayList<Equiplist>();
+    //@ManyToMany(cascade = {CascadeType.ALL})
+    //@JoinTable(name="equiplist_trip",
+    //        joinColumns = {@JoinColumn(name="trip_id")},
+    //        inverseJoinColumns = {@JoinColumn(name="equiplist_id")})
+    //private List<Equiplist> items = new ArrayList<Equiplist>();
 
     //JOBNO FIELD IS OPTIONAL
     private String jobNumber;

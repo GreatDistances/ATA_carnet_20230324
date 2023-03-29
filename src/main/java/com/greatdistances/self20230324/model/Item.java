@@ -1,22 +1,23 @@
 package com.greatdistances.self20230324.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Item extends AbstractEntity {
 
-    @ManyToMany(mappedBy = "equiplist", cascade = CascadeType.ALL)
-    private List<Equiplist> equiplists = new ArrayList<Equiplist>();
+    //@ManyToMany(mappedBy = "equiplist", cascade = CascadeType.ALL)
+    //private List<Equiplist> equiplists = new ArrayList<Equiplist>();
 
-    //private Category category; // TODO switch to list.
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    @NotNull(message="Required field.")
+    private Department department;
 
     @NotNull(message="Required field.")
     @Min(value=1, message="Minimum value is 1")
@@ -47,15 +48,22 @@ public class Item extends AbstractEntity {
     public Item() {
     }
 
-    public Item(long pieces, double weightKgPerPiece, double valuePerPiece, String origin, String serialNo, String owner) {
+    public Item(Department department, long pieces, double weightKgPerPiece, double valuePerPiece, String origin, String serialNo, String owner) {
+        this.department = department;
         this.pieces = pieces;
         this.weightKgPerPiece = weightKgPerPiece;
-        this.weightKgTotal = getWeightKgTotal();
         this.valuePerPiece = valuePerPiece;
-        this.valueTotal = getValueTotal();
         this.origin = origin;
         this.serialNo = serialNo;
         this.owner = owner;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public long getPieces() {

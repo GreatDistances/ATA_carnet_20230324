@@ -1,7 +1,6 @@
 package com.greatdistances.self20230324.controllers;
 
 import com.greatdistances.self20230324.model.Equiplist;
-import com.greatdistances.self20230324.model.Item;
 import com.greatdistances.self20230324.model.data.EquiplistRepository;
 import com.greatdistances.self20230324.model.data.ItemRepository;
 import com.greatdistances.self20230324.model.data.TripRepository;
@@ -34,21 +33,21 @@ public class EquiplistController {
         return "equiplist/index";
     }
 
-    @GetMapping("new")
+    @GetMapping("add")
     public String displayNewEquipListForm(Model model) {
         model.addAttribute("title", "New Equipment List");
         model.addAttribute("items", itemRepository.findAll());
         model.addAttribute(new Equiplist()); // TODO MPW - how does this work ??
-        return "equiplist/new";
+        return "equiplist/add";
     }
 
-    @PostMapping("new")
+    @PostMapping("add")
     public String processNewEquipListForm(@ModelAttribute @Valid Equiplist newEquiplist, Model model, Errors errors) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "New Equipment List");
             model.addAttribute("errorMsg", "Bad data!");
-            return "equiplist/new";
+            return "equiplist/add";
         }
 
         model.addAttribute("title", "New Equipment List");
@@ -58,19 +57,19 @@ public class EquiplistController {
         return "redirect:";
     }
 
-    @GetMapping("edit")
+    @GetMapping("delete")
     public String displayDeleteItemForm(Model model) {
         model.addAttribute("title", "Delete Item(s)");
-        model.addAttribute("items", itemRepository.findAll());
-        return "equiplist/edit";
+        model.addAttribute("equiplists", equiplistRepository.findAll());
+        return "equiplist/delete";
     }
 
     @PostMapping("delete")
-    public String processDeleteItemForm(@RequestParam long[] itemIds) {
-        for (long id : itemIds) {
-            Optional<Item> optItem = itemRepository.findById((int) id);
-            if (optItem.isPresent()) {
-                itemRepository.deleteById((int) id);
+    public String processDeleteItemForm(@RequestParam long[] equiplistIds) {
+        for (long id : equiplistIds) {
+            Optional<Equiplist> optEquiplist = equiplistRepository.findById(id);
+            if (optEquiplist.isPresent()) {
+                equiplistRepository.deleteById(id);
             }
         }
         return "redirect:";

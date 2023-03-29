@@ -62,9 +62,9 @@ public class TripController {
     @PostMapping("delete")
     public String processDeleteTripForm(@RequestParam long[] tripIds) {
         for (long id : tripIds) {
-            Optional<Trip> optTrip = tripRepository.findById((int) id);
+            Optional<Trip> optTrip = tripRepository.findById(id);
             if (optTrip.isPresent()) {
-                tripRepository.deleteById((int) id);
+                tripRepository.deleteById(id);
             }
         }
         return "redirect:";

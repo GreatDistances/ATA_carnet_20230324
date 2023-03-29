@@ -7,18 +7,21 @@
 <body>
 
 <div th:fragment="page-header">
-    <h1 th:text="${title}"></h1>
+    <h1>Carnet Builder</h1>
+    <a th:href="@{/item}">Equipment Inventory</a>
+    <a th:href="@{/item/add}">Add Equipment</a>
+    <a th:href="@{/item/delete}">Delete Equipment</a>
+    <br>
+    <a th:href="@{/equiplist/index}">Equipment List Index</a> <!-- TODO fix routing to remove /index" -->
+    <a th:href="@{/equiplist/add}">New Equipment List</a>
+    <a th:href="@{/equiplist/delete}">Delete An Equipment List</a>
+    <br>
     <a th:href="@{/trip}">Trip Index</a>
     <a th:href="@{/trip/add}">Add a Trip</a>
     <a th:href="@{/trip/delete}">Delete a Trip</a>
     <br>
-    <a th:href="@{/inventory}">Equipment Inventory</a>
-    <a th:href="@{/inventory/add}">Add Equipment</a>
-    <a th:href="@{/inventory/delete}">Delete Equipment</a>
-    <br>
-    <a th:href="@{/equiplist/index}">Equipment List Index</a>
-    <a th:href="@{/equiplist/new}">New Equipment List</a>
-    <a th:href="@{/equiplist/edit}">Edit An Equipment List</a>
+    <a th:href="@{/department}">Department Index</a>
+    <a th:href="@{/department/add}">Add a Department</a>
 </div>
 
 </body>

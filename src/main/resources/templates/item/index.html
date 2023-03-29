@@ -7,12 +7,13 @@
 <body>
 
 <nav th:replace="fragments :: page-header"></nav>
+<h1 th:text="${title}"> </h1>
 
 <table>
     <tr>
         <th>System ID</th>
         <th>Item Name</th>
-        <th>Item Category or Dept</th>
+        <th>Dept</th>
         <th>Piece Count</th>
         <th>Piece Weight</th>
         <th>Total Weight</th>
@@ -27,7 +28,7 @@
     <tr th:each="item : ${items}">
         <td th:text="${item.id}"></td>
         <td th:text="${item.name}"></td>
-        <td>ADD CATEGORY</td>
+        <td th:text="${item.department.name}"></td>
         <td th:text="${item.pieces}"></td>
         <td th:text="${item.weightKgPerPiece}"></td>
         <td th:text="${item.weightKgTotal}"></td>

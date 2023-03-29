@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Equipment List Index</title>
+    <title>Department Index</title>
 </head>
 <body>
 
@@ -12,14 +12,12 @@
 <table>
     <tr>
         <th>System ID</th>
-        <th>List Name</th>
-        <th>Job No.</th>
+        <th>Department Name</th>
     </tr>
     <th:block>
-        <tr th:each="equiplist : ${equiplists}">
-            <td th:text="${equiplist.id}"></td>
-            <td th:text="${equiplist.name}"></td>
-            <td th:text="${equiplist.jobNumber}"></td>
+        <tr th:each="department : ${departments}">
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.name}"></td>
     </th:block>
     </tr>
 </table>

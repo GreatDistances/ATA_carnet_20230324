@@ -2,18 +2,19 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Edit Equipment List</title>
+    <title>Delete Item From Inventory</title>
 </head>
 <body>
 
 <nav th:replace="fragments :: page-header"></nav>
+<h1 th:text="${title}"> </h1>
 
 <table>
     <tr>
-        <th>Add Item ?</th>
+        <th>Delete ?</th>
         <th>System ID</th>
         <th>Item Name</th>
-        <th>Item Category or Dept</th>
+        <th>Dept</th>
         <th>Piece Count</th>
         <th>Piece Weight</th>
         <th>Total Weight</th>
@@ -25,13 +26,13 @@
         <th>Tags</th>
     </tr>
     <form method="post">
-        <th:block>
-            <div class="form-group">
+            <th:block>
+                <div class="form-group">
                 <tr th:each="item : ${items}">
                     <td><input type="checkbox" name="itemIds" th:value="${item.id}"></td> <!-- not sure if item.id will actually work as written-->
                     <td th:text="${item.id}"></td>
                     <td th:text="${item.name}"></td>
-                    <td>ADD CATEGORY</td>
+                    <td th:text="${item.department.name}"></td>
                     <td th:text="${item.pieces}"></td>
                     <td th:text="${item.weightKgPerPiece}"></td>
                     <td th:text="${item.weightKgTotal}"></td>
@@ -42,14 +43,15 @@
                     <td th:text="${item.owner}"></td>
                     <td>ADD TAGS</td>
                 </tr>
-            </div>
-        </th:block>
+                </div>
+            </th:block>
         <div class="form-group">
             <button type="submit" value="submit">Submit</button> <!-- TODO figure out how to move form buttons below boxes -->
             <button type="reset">Reset All Fields</button>
         </div>
     </form>
 </table>
+
 
 </body>
 </html>
