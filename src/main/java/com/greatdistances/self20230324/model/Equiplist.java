@@ -15,7 +15,8 @@ public class Equiplist extends AbstractEntity{
             inverseJoinColumns = {@JoinColumn(name="item_id")})
     private List<Item> items = new ArrayList<Item>();
 
-    private ArrayList<Item> equiplistInventory = new ArrayList<>(); // IS THIS CORRECT?
+    @ManyToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Trip> trips = new ArrayList<Trip>();
 
     private String jobNumber;
 

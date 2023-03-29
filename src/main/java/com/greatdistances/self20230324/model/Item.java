@@ -13,12 +13,10 @@ import java.util.List;
 @Entity
 public class Item extends AbstractEntity {
 
-    //private Category category; // TODO switch to list.
-    //private Tag tags; // TODO switch to list.
-    //private Trip trip; // TODO switch to list.
-
     @ManyToMany(mappedBy = "equiplist", cascade = CascadeType.ALL)
     private List<Equiplist> equiplists = new ArrayList<Equiplist>();
+
+    //private Category category; // TODO switch to list.
 
     @NotNull(message="Required field.")
     @Min(value=1, message="Minimum value is 1")
