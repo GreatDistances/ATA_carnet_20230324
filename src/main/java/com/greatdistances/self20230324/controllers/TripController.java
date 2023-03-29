@@ -1,8 +1,8 @@
 package com.greatdistances.self20230324.controllers;
 
 import com.greatdistances.self20230324.model.Trip;
+import com.greatdistances.self20230324.model.data.JobRepository;
 import com.greatdistances.self20230324.model.data.TripRepository;
-import com.greatdistances.self20230324.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class TripController {
     TripRepository tripRepository;
 
     @Autowired
-    TripService tripService;
+    JobRepository jobRepository;
 
     @GetMapping("")
     public String index(Model model) {
@@ -32,6 +32,7 @@ public class TripController {
     @GetMapping("add")
     public String displayAddTripForm(Model model) {
         model.addAttribute("title", "Add Trip");
+        model.addAttribute("jobs", jobRepository.findAll());
         model.addAttribute(new Trip()); // TODO MPW - how does this work ??
         return "trip/add";
     }

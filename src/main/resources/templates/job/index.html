@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Department Index</title>
+</head>
+<body>
+
+<nav th:replace="fragments :: page-header"></nav>
+<h1 th:text="${title}"> </h1>
+
+<table>
+    <tr>
+        <th>System ID</th>
+        <th>Job Name</th>
+        <th>Job Number</th>
+    </tr>
+    <th:block>
+        <tr th:each="job : ${jobs}">
+            <td th:text="${job.id}"></td>
+            <td th:text="${job.name}"></td>
+            <td th:text="${job.jobNumber}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

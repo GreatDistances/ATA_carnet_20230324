@@ -14,11 +14,18 @@
         <div class="form-group">
             <label for="name">Trip Name:</label>
             <input type="text" th:field="${trip.name}" id="name">
-        </div>
-        <div class="form-group">
-            <label for="jobNumber">Job Number (Optional):</label>
-            <input type="text" th:field="${trip.jobNumber}" id="jobNumber">
-        </div>
+            <div class="form-group">
+                <label>Job Reference:
+                    <select th:field="${trip.job}">
+                        <option th:each="job : ${jobs}"
+                                th:value="${job.id}"
+                                th:text="|${job.jobNumber} // ${job.name}|"
+                        ></option>
+                    </select>
+                    <p class="error" th:errors="${trip.job}"></p>
+                    <a href="/job/add">Add A Job</a>
+                </label>
+            </div>
         <div class="form-group">
             <label for="country">Destination Country:</label>
             <input type="text" th:field="${trip.country}" id="country">

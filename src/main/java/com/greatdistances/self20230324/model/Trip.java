@@ -3,6 +3,8 @@ package com.greatdistances.self20230324.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +20,10 @@ public class Trip extends AbstractEntity {
     //private List<Equiplist> items = new ArrayList<Equiplist>();
 
     //JOBNO FIELD IS OPTIONAL
-    private String jobNumber;
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    @NotNull(message="Required field.")
+    private Job job;
 
     @NotEmpty(message="Required field.")
     @NotNull(message="Required field.")
@@ -38,8 +43,8 @@ public class Trip extends AbstractEntity {
 
     private boolean isEquipAttached;
 
-    public Trip(String jobNumber, String country, Date importDate, Date exportDate, String transit, boolean isEquipAttached) {
-        this.jobNumber = jobNumber;
+    public Trip(Job job, String country, Date importDate, Date exportDate, String transit) {
+        this.job = job;
         this.country = country;
         this.importDate = importDate;
         this.exportDate = exportDate;
@@ -50,12 +55,12 @@ public class Trip extends AbstractEntity {
     public Trip() {
     }
 
-    public String getJobNumber() {
-        return jobNumber;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJobNumber(String jobNumber) {
-        this.jobNumber = jobNumber;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     public String getCountry() {

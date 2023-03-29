@@ -13,13 +13,15 @@
     <tr>
         <th>System ID</th>
         <th>List Name</th>
-        <th>Job No.</th>
+        <th>Job Reference</th>
+        <th>Trip Reference</th>
     </tr>
     <th:block>
         <tr th:each="equiplist : ${equiplists}">
             <td th:text="${equiplist.id}"></td>
             <td th:text="${equiplist.name}"></td>
-            <td th:text="${equiplist.jobNumber}"></td>
+            <td th:text="|${equiplist.trip.job.jobNumber} // ${equiplist.trip.job.name}|"></td>
+            <td th:text="${equiplist.trip.name}"></td>
     </th:block>
     </tr>
 </table>

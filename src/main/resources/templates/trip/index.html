@@ -13,7 +13,7 @@
     <tr>
         <th>System ID</th>
         <th>Trip Name</th>
-        <th>Job No.</th>
+        <th>Job Reference</th>
         <th>Destination</th>
         <th>Import Date</th>
         <th>Export Date</th>
@@ -24,7 +24,7 @@
         <tr th:each="trip : ${trips}">
             <td th:text="${trip.id}"></td>
             <td th:text="${trip.name}"></td>
-            <td th:text="${trip.jobNumber}"></td>
+            <td th:text="|${trip.job.name} // ${trip.job.jobNumber}|"></td>
             <td th:text="${trip.country}"></td>
             <td th:text="${trip.importDate}"></td>
             <td th:text="${trip.exportDate}"></td>

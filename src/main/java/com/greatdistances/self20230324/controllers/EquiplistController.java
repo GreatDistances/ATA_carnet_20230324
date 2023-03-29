@@ -37,6 +37,7 @@ public class EquiplistController {
     public String displayNewEquipListForm(Model model) {
         model.addAttribute("title", "New Equipment List");
         model.addAttribute("items", itemRepository.findAll());
+        model.addAttribute("trips", tripRepository.findAll());
         model.addAttribute(new Equiplist()); // TODO MPW - how does this work ??
         return "equiplist/add";
     }

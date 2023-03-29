@@ -11,9 +11,10 @@
 
 <table>
     <tr>
-        <th>System ID</th>
+        <th>Delete ?</th>
+        </th><th>System ID</th>
         <th>Trip Name</th>
-        <th>Job No.</th>
+        <th>Job Reference</th>
         <th>Destination</th>
         <th>Import Date</th>
         <th>Export Date</th>
@@ -27,7 +28,7 @@
                     <td><input type="checkbox" name="tripIds" th:value="${trip.id}"></td> <!-- not sure if item.id will actually work as written-->
                     <td th:text="${trip.id}"></td>
                     <td th:text="${trip.name}"></td>
-                    <td th:text="${trip.jobNumber}"></td>
+                    <td th:text="|${trip.job.jobNumber} // ${trip.job.name}|"></td>
                     <td th:text="${trip.country}"></td>
                     <td th:text="${trip.importDate}"></td>
                     <td th:text="${trip.exportDate}"></td>
