@@ -4,7 +4,6 @@ import com.greatdistances.self20230324.model.Trip;
 import com.greatdistances.self20230324.model.data.TripRepository;
 import com.greatdistances.self20230324.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -61,17 +60,18 @@ public class TripController {
     }
 
     @PostMapping("delete")
-    public String processDeleteTripForm(@RequestParam int[] tripIds) {
-        for (int id : tripIds) {
-            Optional<Trip> optTrip = tripRepository.findById(id);
+    public String processDeleteTripForm(@RequestParam long[] tripIds) {
+        for (long id : tripIds) {
+            Optional<Trip> optTrip = tripRepository.findById((int) id);
             if (optTrip.isPresent()) {
-                tripRepository.deleteById(id);
+                tripRepository.deleteById((int) id);
             }
         }
         return "redirect:";
     }
 
-    @GetMapping("edit/{tripId}")
+
+/*@GetMapping("edit/{tripId}")
     public String displayEditTripForm(Model model, @PathVariable int tripId) {
 
         Optional<Trip> optTrip = tripRepository.findById(tripId);
@@ -95,7 +95,7 @@ public class TripController {
         tripRepository.save(updateTrip);
 
         return ResponseEntity.ok(updateTrip);
-    }
+    }*/
 
 
 }

@@ -1,18 +1,25 @@
 package com.greatdistances.self20230324.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Equiplist extends AbstractEntity{
 
     // TODO @ManyToMany (list to items = one-to-many, items to lists = one-to-many also)
 
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="equiplist_item",
+            joinColumns = {@JoinColumn(name="equiplist_id")},
+            inverseJoinColumns = {@JoinColumn(name="item_id")})
+    private List<Item> items = new ArrayList<Item>();
+
     private ArrayList<Item> equiplistInventory = new ArrayList<>(); // IS THIS CORRECT?
 
     private String jobNumber;
 
-    private int itemCount;
+    private long itemCount;
 
     public Equiplist(ArrayList<Item> equiplistInventory, String jobNumber) {
         this.equiplistInventory = equiplistInventory;
@@ -38,11 +45,11 @@ public class Equiplist extends AbstractEntity{
         this.jobNumber = jobNumber;
     }
 
-    public int getItemCount() {
+    public long getItemCount() {
         return itemCount;
     }
 
-    public void setItemCount(int itemCount) {
+    public void setItemCount(long itemCount) {
         this.itemCount = equiplistInventory.size(); // TODO size() will present problem for inv. items with multiple pieces.
     }
 }

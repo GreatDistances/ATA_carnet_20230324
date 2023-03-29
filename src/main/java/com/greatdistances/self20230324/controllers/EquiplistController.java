@@ -66,11 +66,11 @@ public class EquiplistController {
     }
 
     @PostMapping("delete")
-    public String processDeleteItemForm(@RequestParam int[] itemIds) {
-        for (int id : itemIds) {
-            Optional<Item> optItem = itemRepository.findById(id);
+    public String processDeleteItemForm(@RequestParam long[] itemIds) {
+        for (long id : itemIds) {
+            Optional<Item> optItem = itemRepository.findById((int) id);
             if (optItem.isPresent()) {
-                itemRepository.deleteById(id);
+                itemRepository.deleteById((int) id);
             }
         }
         return "redirect:";

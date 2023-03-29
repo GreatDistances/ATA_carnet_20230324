@@ -1,10 +1,14 @@
 package com.greatdistances.self20230324.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Item extends AbstractEntity {
@@ -13,9 +17,12 @@ public class Item extends AbstractEntity {
     //private Tag tags; // TODO switch to list.
     //private Trip trip; // TODO switch to list.
 
+    @ManyToMany(mappedBy = "equiplist", cascade = CascadeType.ALL)
+    private List<Equiplist> equiplists = new ArrayList<Equiplist>();
+
     @NotNull(message="Required field.")
     @Min(value=1, message="Minimum value is 1")
-    private int pieces;
+    private long pieces;
 
     @NotNull(message="Required field.")
     @DecimalMin(value="0.1", message="Minimum possible value is 0.1 kg.")
@@ -42,7 +49,7 @@ public class Item extends AbstractEntity {
     public Item() {
     }
 
-    public Item(int pieces, double weightKgPerPiece, double valuePerPiece, String origin, String serialNo, String owner) {
+    public Item(long pieces, double weightKgPerPiece, double valuePerPiece, String origin, String serialNo, String owner) {
         this.pieces = pieces;
         this.weightKgPerPiece = weightKgPerPiece;
         this.weightKgTotal = getWeightKgTotal();
@@ -53,11 +60,11 @@ public class Item extends AbstractEntity {
         this.owner = owner;
     }
 
-    public int getPieces() {
+    public long getPieces() {
         return pieces;
     }
 
-    public void setPieces(int pieces) {
+    public void setPieces(long pieces) {
         this.pieces = pieces;
     }
 
@@ -73,7 +80,7 @@ public class Item extends AbstractEntity {
         return weightKgTotal;
     }
 
-    public void setWeightKgTotal(double weightKgPerPiece, int pieces) {
+    public void setWeightKgTotal(double weightKgPerPiece, long pieces) {
         this.weightKgTotal = weightKgPerPiece * pieces;
     }
 
@@ -89,7 +96,7 @@ public class Item extends AbstractEntity {
         return valueTotal;
     }
 
-    public void setValueTotal(double valuePerPiece, int pieces) {
+    public void setValueTotal(double valuePerPiece, long pieces) {
         this.valueTotal = valuePerPiece * pieces;
     }
 
