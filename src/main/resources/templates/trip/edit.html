@@ -2,36 +2,44 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Trip Index</title>
+    <title>Edit Trip</title>
 </head>
 <body>
 
 <h1 th:text="${title}"> </h1>
 
-<table>
-    <tr>
-        <th>System ID</th>
-        <th>Trip Name</th>
-        <th>Job No.</th>
-        <th>Destination</th>
-        <th>Import Date</th>
-        <th>Export Date</th>
-        <th>Transit Country(s)</th>
-        <th>Equip List Attached?</th>
-    </tr>
-    <th:block>
-        <tr>
-            <td th:text="${trip.id}"></td>
-            <td th:text="${trip.name}"></td>
-            <td th:text="${trip.jobNumber}"></td>
-            <td th:text="${trip.country}"></td>
-            <td th:text="${trip.importDate}"></td>
-            <td th:text="${trip.exportDate}"></td>
-            <td th:text="${trip.transit}"></td>
-            <td th:text="${trip.isEquipAttached}"></td>
-    </th:block>
-    </tr>
-</table>
+<div>
+    <form action="" method="put">
+        <div class="form-group">
+            <label for="name">Trip Name:</label>
+            <input type="text" th:field="${trip.name}" id="name">
+        </div>
+        <div class="form-group">
+            <label for="jobNumber">Job Number (Optional):</label>
+            <input type="text" th:field="${trip.jobNumber}" id="jobNumber">
+        </div>
+        <div class="form-group">
+            <label for="country">Destination Country:</label>
+            <input type="text" th:field="${trip.country}" id="country">
+        </div>
+        <div class="form-group">
+            <label for="importDate">Equipment Import Date At Destination Country:</label>
+            <input type="date" th:field="${trip.importDate}" id="importDate">
+        </div>
+        <div class="form-group">
+            <label for="exportDate">Equipment Export Date From Destination Country:</label>
+            <input type="date" th:field="${trip.exportDate}" id="exportDate">
+        </div>
+        <div class="form-group">
+            <label for="transit">Transit/Connection Countries (Optional):</label>
+            <input type="text" th:field="${trip.transit}" id="transit">
+        </div>
+        <div class="form-group">
+            <button type="submit" value="submit">Submit</button>
+            <button type="reset">Reset All Fields</button>
+        </div>
+    </form>
+</div>
 
 
 </body>

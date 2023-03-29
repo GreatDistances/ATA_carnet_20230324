@@ -9,7 +9,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -80,10 +79,10 @@ public class TripController {
         return "trip/edit";
     }
 
-    @PutMapping("edit")
-    public String processEditTripForm(@PathVariable(value="tripId"), int id,  {
+    @PutMapping("edit/{tripId}")
+    public String processEditTripForm() {
 
-        tripRepository.save(thisTrip);
     }
+
 
 }
