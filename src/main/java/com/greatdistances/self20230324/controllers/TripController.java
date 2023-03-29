@@ -2,7 +2,9 @@ package com.greatdistances.self20230324.controllers;
 
 import com.greatdistances.self20230324.model.Trip;
 import com.greatdistances.self20230324.model.data.TripRepository;
+import com.greatdistances.self20230324.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,6 +19,9 @@ public class TripController {
 
     @Autowired
     TripRepository tripRepository;
+
+    @Autowired
+    TripService tripService;
 
     @GetMapping("")
     public String index(Model model) {
@@ -80,8 +85,16 @@ public class TripController {
     }
 
     @PutMapping("edit/{tripId}")
-    public String processEditTripForm() {
+    public ResponseEntity<Trip> updateTrip(@PathVariable int tripId,@RequestBody Trip trip) {
+        Trip updateTrip = tripRepository.findById(tripId)
+                .orElseThrow(() -> new Error("Employee not exist with id: " + tripId));
 
+        updateTrip.setCountry(trip.getCountry());
+        updateTrip.setJobNumber(trip.getJobNumber());
+
+        tripRepository.save(updateTrip);
+
+        return ResponseEntity.ok(updateTrip);
     }
 
 
